@@ -54,9 +54,9 @@ public class Element {
         String rPrefix;
 
         if (isAndroidNS) {
-            rPrefix = "android.HttpRequest.id.";
+            rPrefix = "android.R.id.";
         } else {
-            rPrefix = "HttpRequest.id.";
+            rPrefix = "R.id.";
         }
 
         fullID.append(rPrefix);

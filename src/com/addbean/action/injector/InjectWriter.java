@@ -69,9 +69,9 @@ public class InjectWriter extends WriteCommandAction.Simple {
 
             String rPrefix;
             if (element.isAndroidNS) {
-                rPrefix = "android.HttpRequest.id.";
+                rPrefix = "android.R.id.";
             } else {
-                rPrefix = "HttpRequest.id.";
+                rPrefix = "R.id.";
             }
             holderBuilder.append(element.fieldName);
             holderBuilder.append("=");

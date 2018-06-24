@@ -3,6 +3,10 @@ package com.addbean.utils.common;
 import com.addbean.action.injector.InjectorSetting;
 import com.addbean.utils.model.Element;
 import com.intellij.ide.util.PropertiesComponent;
+import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.DefaultActionGroup;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.module.Module;
@@ -13,6 +17,7 @@ import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.ui.popup.Balloon;
 import com.intellij.openapi.ui.popup.JBPopupFactory;
+import com.intellij.openapi.ui.popup.ListPopup;
 import com.intellij.openapi.wm.StatusBar;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.*;
@@ -24,10 +29,12 @@ import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.xml.XmlAttribute;
 import com.intellij.psi.xml.XmlTag;
 import com.intellij.ui.awt.RelativePoint;
+import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,7 +69,6 @@ public class Utils {
 
         PsiElement candidateA = file.findElementAt(offset);
         PsiElement candidateB = file.findElementAt(offset - 1);
-
         PsiFile layout = findLayoutResource(candidateA);
         if (layout != null) {
             return layout;
@@ -90,7 +96,7 @@ public class Utils {
         if (layout == null) {
             return null; // no file to process
         }
-        if (!"HttpRequest.layout".equals(layout.getText())) {
+        if (!"R.layout".equals(layout.getText())) {
             return null; // not layout file
         }
 
@@ -123,7 +129,7 @@ public class Utils {
         }
 
         // TODO - we have a problem here - we still can have multiple layouts (some coming from a dependency)
-        // we need to resolve HttpRequest class properly and find the proper layout for the HttpRequest class
+        // we need to resolve R class properly and find the proper layout for the R class
         for (PsiFile file : files) {
             log.info("Resolved layout resource file for name [" + name + "]: " + file.getVirtualFile());
         }
@@ -303,8 +309,37 @@ public class Utils {
         return PropertiesComponent.getInstance().getValue(InjectorSetting.VIEWHOLDER_CLASS_NAME, "ViewHolder");
     }
 
+
     /**
-     * Parse ID of injected element (eg. HttpRequest.id.text)
+     * 显示选择器；
+     *
+     * @param e
+     * @param actions
+     */
+    public static void showListSelecteMenu(AnActionEvent e, List<String> actions, OnMenuSelectedListener listener) {
+        DefaultActionGroup actionGroup = (DefaultActionGroup) ActionManager.getInstance().getAction("AddBean_JBPopupActionGroup");
+        actionGroup.removeAll();
+        for (int i = 0; i < actions.size(); i++) {
+            final int tmpIndex = i;
+            actionGroup.add(new AnAction(actions.get(tmpIndex)) {
+                @Override
+                public void actionPerformed(AnActionEvent e) {
+                    listener.onSelected(tmpIndex, actions.get(tmpIndex), e);
+                }
+            });
+        }
+
+        ListPopup listPopup = JBPopupFactory.getInstance().createActionGroupPopup("变量名选择", actionGroup, e.getDataContext(), JBPopupFactory.ActionSelectionAid.SPEEDSEARCH, false);
+        listPopup.showInBestPositionFor(e.getDataContext());
+
+    }
+
+    public interface OnMenuSelectedListener {
+        void onSelected(int index, String name, AnActionEvent e);
+    }
+
+    /**
+     * Parse ID of injected element (eg. R.id.text)
      *
      * @param annotation
      * @return
@@ -401,5 +436,46 @@ public class Utils {
             return src;
         }
         return src.substring(0, 1).toUpperCase(Locale.US) + src.substring(1);
+    }
+
+
+    /**
+     * 格式化成驼峰命名
+     *
+     * @param str
+     */
+    public static String formatToUCC(String str, boolean withProfix) {
+        String s1 = str.toLowerCase();
+        String[] words = s1.split(" ");
+        StringBuilder sb = new StringBuilder();
+        sb.append(withProfix ? "m" : "");
+
+        for (int i = 0; i < words.length; i++) {
+            String[] idTokens = words[i].split("\\.");
+            char[] chars = idTokens[idTokens.length - 1].toCharArray();
+            if (i > 0 || !Utils.isEmptyString(withProfix ? "m" : "")) {
+                chars[0] = Character.toUpperCase(chars[0]);
+            }
+
+            sb.append(chars);
+        }
+        if (!withProfix) {
+            sb.replace(0, 1, ""+sb.toString().substring(0,1).toLowerCase());
+        }
+
+        return sb.toString();
+    }
+
+
+    /**
+     * 是否是汉字；
+     *
+     * @param name
+     * @return
+     */
+    public static boolean checkChinese(String name) {
+        if (TextUtils.isEmpty(name)) return false;
+        String reg = "[\\u4e00-\\u9fa5]+";
+        return name.matches(reg);
     }
 }

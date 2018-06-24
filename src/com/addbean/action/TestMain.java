@@ -2,6 +2,7 @@ package com.addbean.action;
 
 import com.addbean.model.HttpHelper;
 import com.addbean.model.TranslateModel;
+import com.addbean.utils.common.Utils;
 import com.addbean.utils.http.OnHttpListener;
 import com.google.gson.Gson;
 
@@ -10,9 +11,11 @@ import java.net.URLEncoder;
 public class TestMain {
 
     public static void main(String[] args){
-        HttpHelper.translate(URLEncoder.encode("测试"), new OnHttpListener<TranslateModel>() {
+        System.out.print(Utils.formatToUCC("this is test",true));
+        HttpHelper.translate(URLEncoder.encode("这是测试单词"), new OnHttpListener<TranslateModel>() {
             @Override
             public void onSuccess(TranslateModel data) {
+
                 StringBuilder result=new StringBuilder();
                 result.append("\""+data.getQuery()+"\"\n");
                 result.append("释义："+data.getTranslation()+"\n");
@@ -25,6 +28,12 @@ public class TestMain {
                 }
                 System.out.print(result);
             }
+
+            @Override
+            public void onFailure(Exception e) {
+                super.onFailure(e);
+            }
         });
     }
+
 }
