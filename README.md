@@ -2,13 +2,13 @@
 这是一款整合多种工具的IDEA插件
 
 ## 自动生成ViewHolder
-pc快捷键：shift + control + m
+pc快捷键：shift + control + i
 Mac快捷键：shift + command + i
 
 ![演示](https://github.com/AddBean/AddBeanPlugin/tree/master/images/gif1.gif) 
 
 ## 英汉互译
-pc快捷键：shift + control + m
+pc快捷键：shift + control + d
 Mac快捷键：shift + command + d
 
 ![演示](https://github.com/AddBean/AddBeanPlugin/tree/master/images/gif2.gif) 
