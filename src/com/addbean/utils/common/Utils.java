@@ -316,7 +316,7 @@ public class Utils {
      * @param e
      * @param actions
      */
-    public static void showListSelecteMenu(AnActionEvent e, List<String> actions, OnMenuSelectedListener listener) {
+    public static void showListSelecteMenu(AnActionEvent e, String title,List<String> actions, OnMenuSelectedListener listener) {
         DefaultActionGroup actionGroup = (DefaultActionGroup) ActionManager.getInstance().getAction("AddBean_JBPopupActionGroup");
         actionGroup.removeAll();
         for (int i = 0; i < actions.size(); i++) {
@@ -329,7 +329,7 @@ public class Utils {
             });
         }
 
-        ListPopup listPopup = JBPopupFactory.getInstance().createActionGroupPopup("变量名选择", actionGroup, e.getDataContext(), JBPopupFactory.ActionSelectionAid.SPEEDSEARCH, false);
+        ListPopup listPopup = JBPopupFactory.getInstance().createActionGroupPopup(title, actionGroup, e.getDataContext(), JBPopupFactory.ActionSelectionAid.SPEEDSEARCH, false);
         listPopup.showInBestPositionFor(e.getDataContext());
 
     }

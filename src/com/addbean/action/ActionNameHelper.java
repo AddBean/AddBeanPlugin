@@ -63,19 +63,19 @@ public class ActionNameHelper extends BaseGenerateAction {
                 List<String> listMenus = new ArrayList<>();
                 listMenus.add("变量名");
                 listMenus.add("方法名");
-                Utils.showListSelecteMenu(e, listMenus, new Utils.OnMenuSelectedListener() {
+                Utils.showListSelecteMenu(e, "选择生成类型", listMenus, new Utils.OnMenuSelectedListener() {
                     @Override
                     public void onSelected(final int indexMenu, String name, AnActionEvent e) {
                         List<String> list = new ArrayList<>();
                         for (int i = 0; i < data.getTranslation().size(); i++) {
                             if (indexMenu == 0) {
-                                list.add(Utils.formatToUCC(data.getTranslation().get(i), true));
+                                list.add(Utils.formatToUCC(decorateTheVariable(data.getTranslation().get(i)), true));
                             }
                             if (indexMenu == 1) {
-                                list.add(Utils.formatToUCC(data.getTranslation().get(i), false) + "()");
+                                list.add(Utils.formatToUCC(decorateTheVariable(data.getTranslation().get(i) + "()"), false));
                             }
                         }
-                        Utils.showListSelecteMenu(e, list, new Utils.OnMenuSelectedListener() {
+                        Utils.showListSelecteMenu(e, indexMenu == 0 ? "选择变量名" : "选择方法名", list, new Utils.OnMenuSelectedListener() {
                             @Override
                             public void onSelected(int index, String name, AnActionEvent e) {
                                 if (indexMenu == 0) {
@@ -153,5 +153,12 @@ public class ActionNameHelper extends BaseGenerateAction {
                 editor.getSelectionModel().setSelection(start, start + replacement.length());
             }
         }.execute().throwException();
+    }
+
+    /**
+     * 装饰变量
+     */
+    private String decorateTheVariable(String parm) {
+        return parm.replace(" the ", " ");
     }
 }

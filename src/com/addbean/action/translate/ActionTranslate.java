@@ -40,12 +40,16 @@ public class ActionTranslate extends BaseGenerateAction {
                     StringBuilder result = new StringBuilder();
                     result.append("\"" + data.getQuery() + "\"\n\n");
                     result.append("释义：" + data.getTranslation() + "\n");
-                    for (int i = 0; i < data.getBasic().getExplains().size(); i++) {
-                        result.append("   " + data.getBasic().getExplains().get(i) + "\n");
+                    if (data.getBasic()!=null&&data.getBasic().getExplains() != null) {
+                        for (int i = 0; i < data.getBasic().getExplains().size(); i++) {
+                            result.append("   " + data.getBasic().getExplains().get(i) + "\n");
+                        }
                     }
-                    result.append("\n更多：\n");
-                    for (int i = 0; i < data.getWeb().size(); i++) {
-                        result.append("   " + data.getWeb().get(i).getKey() + "：" + data.getWeb().get(i).getValue() + "\n");
+                    if (data.getWeb() != null) {
+                        result.append("\n更多：\n");
+                        for (int i = 0; i < data.getWeb().size(); i++) {
+                            result.append("   " + data.getWeb().get(i).getKey() + "：" + data.getWeb().get(i).getValue() + "\n");
+                        }
                     }
                     msg = result.toString();
                     msgType = MessageType.INFO;
