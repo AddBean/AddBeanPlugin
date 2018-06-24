@@ -54,7 +54,6 @@ public class ActionInjector extends BaseGenerateAction implements IConfirmListen
         }
 
         log.info("Layout file: " + layout.getVirtualFile());
-        Utils.showErrorNotification(project, "layout file:"+layout.getVirtualFile());
         ArrayList<Element> elements = Utils.getIDsFromLayout(layout);
         if (!elements.isEmpty()) {
             showDialog(project, editor, elements);
