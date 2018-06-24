@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5da71b35-8dd7-49c9-b0b2-adeb5b6f0c73" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/ActionNameHelper$1$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/ActionNameHelper$1$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/ActionNameHelper$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/ActionNameHelper$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/ActionNameHelper$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/ActionNameHelper$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/ActionNameHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/ActionNameHelper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/translate/ActionTranslate$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/translate/ActionTranslate$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/translate/ActionTranslate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/action/translate/ActionTranslate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/utils/common/Utils$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/utils/common/Utils$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/utils/common/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AddBeanPlugin/com/addbean/utils/common/Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/addbean/action/injector/ActionInjector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/addbean/action/injector/ActionInjector.java" afterDir="false" />
-    </list>
+    <list default="true" id="5da71b35-8dd7-49c9-b0b2-adeb5b6f0c73" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,8 +47,8 @@
       <file leaf-file-name="ActionInjector.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/addbean/action/injector/ActionInjector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="422">
+              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -458,7 +447,7 @@
       <workItem from="1529808148470" duration="2727000" />
       <workItem from="1529812552174" duration="1567000" />
       <workItem from="1529815690904" duration="333000" />
-      <workItem from="1529822447117" duration="1095000" />
+      <workItem from="1529822447117" duration="1133000" />
     </task>
     <task id="LOCAL-00001" summary="优化代码">
       <created>1529823253730</created>
@@ -471,7 +460,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25337000" />
+    <option name="totallyTimeSpent" value="25375000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -486,9 +475,9 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.30545455" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32969698" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32969698" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26323318" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26323318" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -799,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/addbean/action/injector/ActionInjector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+        <state relative-caret-position="422">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
