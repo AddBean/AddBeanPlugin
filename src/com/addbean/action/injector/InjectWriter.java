@@ -61,7 +61,6 @@ public class InjectWriter extends WriteCommandAction.Simple {
         holderBuilder.append("(android.view.View view) {");
 
 
-
         for (Element element : mElements) {
             if (!element.used) {
                 continue;
@@ -109,10 +108,36 @@ public class InjectWriter extends WriteCommandAction.Simple {
             viewHolder.add(mFactory.createFieldFromText(injection.toString(), mClass));
         }
 
+        mClass.addAfter(mFactory.createKeyword("static", mClass), mClass.findInnerClassByName(Utils.getViewHolderClassName(), true));
         mClass.add(viewHolder);
-        mClass.add(mFactory.createFieldFromText("private "+Utils.getViewHolderClassName()+" m"+Utils.getViewHolderClassName()+";", mClass));
+        mClass.add(mFactory.createFieldFromText("private " + Utils.getViewHolderClassName() + " m" + Utils.getViewHolderClassName() + ";", mClass));
+        createClickText();
+    }
 
-        mClass.addBefore(mFactory.createKeyword("static", mClass), mClass.findInnerClassByName(Utils.getViewHolderClassName(), true));
+    /**
+     * 创建click字段；
+     *
+     * @return
+     */
+    private void createClickText() {
+        boolean hasClick = false;
+        for (Element element : mElements) {
+            if (element.isClick) {
+                hasClick = true;
+            }
+        }
+        if (!hasClick) return;
+
+        StringBuilder method = new StringBuilder();
+        method.append("@Override\n public void onClick(View v){");
+        for (Element element : mElements) {
+            if (element.isClick) {
+                method.append("if(v.getId()==");
+                method.append(element.getFullID() + "){}");
+            }
+        }
+        method.append("}");
+        mClass.add(mFactory.createMethodFromText(method.toString(), mClass));
     }
 
 

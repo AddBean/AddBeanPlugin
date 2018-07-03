@@ -113,7 +113,7 @@ public class ActionInjector extends BaseGenerateAction implements IConfirmListen
             annotations = field.getFirstChild().getText().split(" ");
 
             for (String annotation : annotations) {
-                id = Utils.getInjectionID( annotation.trim());
+                id = Utils.getInjectionID(annotation.trim());
                 if (!Utils.isEmptyString(id)) {
                     ids.add(id);
                 }
